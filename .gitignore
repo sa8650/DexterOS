@@ -1,0 +1,22 @@
+# Dependencies / build artefacts
+node_modules/
+.wrangler/
+.wrangler-docs/
+dist/
+build/
+
+# Local test state and screenshots
+tests/screens/
+tests/.state*/
+
+# Secrets — never commit these
+.dev.vars
+.env
+.env.*
+!.env.example
+
+# OS noise
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*

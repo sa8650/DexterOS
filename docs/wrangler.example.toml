@@ -1,0 +1,42 @@
+# DexterOS — EXAMPLE Wrangler config file (reference only, NOT loaded by anything)
+#
+#   ⚠️  Do not copy this file to the project root as `wrangler.toml`.
+#
+# Cloudflare Pages treats a Wrangler configuration file at the project root as
+# the *source of truth*: once a deployment contains one, the dashboard shows
+# "bindings of this project are managed through wrangler.toml" and you can no
+# longer add D1/R2 bindings from the Cloudflare UI.
+#
+# DexterOS is designed the other way round — bindings are created in the
+# dashboard and the code only refers to their names (`env.DB`, `env.MEDIA`):
+#
+#   Workers & Pages → your Pages project → Settings → Functions → Bindings
+#     • D1 database binding  → variable name: DB      (required)
+#     • R2 bucket binding    → variable name: MEDIA   (required for uploads)
+#
+# This file is kept purely as documentation of what a config-file-based
+# deployment would look like. The identifiers below are placeholders.
+
+name = "dexteros"
+pages_build_output_dir = "public"
+compatibility_date = "2025-09-23"          # the dashboard manages this for dashboard-configured projects
+
+# If you ever *do* choose config-file management, the two bindings would be:
+[[d1_databases]]
+binding       = "DB"                        # do not rename — the API reads env.DB
+database_name = "<your-database-name>"
+database_id   = "<your-database-id>"
+
+[[r2_buckets]]
+binding     = "MEDIA"                       # do not rename — uploads are written to env.MEDIA
+bucket_name = "<your-bucket-name>"
+
+# Optional plain variables for the deployment (all have safe defaults):
+# [vars]
+# SERVICE_NAME           = "DexterOS"        # product name shown in the UI
+# REGISTRATION_MODE      = "open"            # open | closed  (initial value; admin can change it in the console)
+# MAX_USERS_PER_TENANT   = "50"
+# MAX_TENANTS            = "50"
+# UPLOAD_MAX_BYTES       = "6291456"
+# PBKDF2_ITERATIONS      = "100000"           # 10 000–100 000; the Workers runtime refuses more
+# R2_PUBLIC_BASE_URL     = ""                # e.g. https://media.example.com (only if the bucket has a public domain)

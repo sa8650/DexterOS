@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin console · DexterOS</title>
+<meta name="description" content="DexterOS administration: applications, wallpapers, members and workspace settings.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="admin" data-theme="dark">
+
+<div id="admin-app">
+  <aside class="side">
+    <a class="brand" href="/">
+      <span class="brand-mark">D</span>
+      <span>DexterOS<small id="side-workspace">workspace</small></span>
+    </a>
+    <span class="badge badge-accent side-badge">Admin console</span>
+    <nav id="side-nav"></nav>
+    <div class="side-foot">
+      <div class="side-user" id="side-user"></div>
+      <a class="btn btn-sm" href="/app">🖥️ Open desktop</a>
+      <button class="btn btn-sm btn-subtle" id="signout">⏻ Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <div class="crumb">DexterOS · Administration</div>
+        <h1 id="topbar-title">Workspace management</h1>
+      </div>
+      <span class="spacer"></span>
+      <a class="btn btn-sm btn-subtle" href="/" title="Visit the public site">🌐 Landing page</a>
+      <button class="btn btn-sm btn-subtle" id="theme-toggle" title="Toggle light/dark">🌓 Theme</button>
+      <a class="btn btn-sm" href="/app">Desktop</a>
+    </header>
+    <section class="view" id="view"></section>
+  </main>
+</div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/admin.js"></script>
+</body>
+</html>

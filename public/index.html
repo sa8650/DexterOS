@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DexterOS — the cloud desktop for your team's web apps</title>
+<meta name="description" content="DexterOS is a multi-tenant SaaS workspace that puts every web app your team uses on one Windows 11-inspired cloud desktop. Database-driven apps, admin-controlled wallpapers, secure authentication.">
+<meta name="theme-color" content="#2563eb">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/landing.css">
+</head>
+<body class="landing">
+<div class="landing-shell">
+
+  <!-- ───────────────────────────────────────────── nav -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">D</span>
+        <span>DexterOS<small>Workspace OS</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#admin">For admins</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="btn btn-subtle" data-auth="login">Sign in</button>
+        <button class="btn btn-primary" data-auth="register" data-cta>Get started free</button>
+      </div>
+    </div>
+    <div id="session-banner" class="wrap hiddenish" style="padding-bottom:12px">
+      <div class="card" style="padding:10px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="badge badge-good">Active session</span>
+        <span class="small muted" data-session-name></span>
+        <a class="btn btn-sm btn-primary" href="/app" data-open-console style="margin-left:auto">Open my console</a>
+      </div>
+    </div>
+    <div id="setup-banner" class="wrap hiddenish" style="padding-bottom:12px">
+      <div class="card" style="padding:10px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span class="badge badge-warn">Setup needed</span>
+        <span class="small muted" id="setup-banner-detail"></span>
+        <a class="btn btn-sm btn-primary" href="/setup" style="margin-left:auto">Open the setup wizard</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ───────────────────────────────────────────── hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><i class="dot"></i> Multi-tenant SaaS · Windows 11 25H2 inspired</span>
+        <h1>Every web app your team uses,<br><span class="grad">one cloud desktop.</span></h1>
+        <p class="lead">
+          DexterOS turns scattered SaaS tools into a single managed workspace. Admins add an app with a name,
+          a link and an icon — it appears instantly on every member's desktop as a shortcut that opens inside
+          the console, not in a pile of browser tabs.
+        </p>
+        <div class="hero-cta">
+          <button class="btn btn-primary btn-lg" data-auth="register" data-requires-open>Create your workspace</button>
+          <button class="btn btn-lg" data-auth="login">Sign in</button>
+          <a class="btn btn-lg btn-subtle" href="#features">See what's inside →</a>
+        </div>
+        <div class="hero-trust">
+          <span>🔐 PBKDF2-hashed credentials &amp; server-side sessions</span>
+          <span>🧩 Database-driven apps &amp; wallpapers</span>
+          <span>🏢 Isolated workspaces per tenant</span>
+          <span>☁️ Cloudflare Pages · D1 · R2</span>
+        </div>
+      </div>
+
+      <div class="preview" aria-hidden="true">
+        <div class="preview-screen">
+          <div class="preview-topbar"><i></i><i></i><i></i></div>
+          <div class="preview-icons">
+            <div class="preview-icon"><div class="tile">📚</div><span>Wikipedia</span></div>
+            <div class="preview-icon"><div class="tile">📝</div><span>Notion</span></div>
+            <div class="preview-icon"><div class="tile">✏️</div><span>Excalidraw</span></div>
+            <div class="preview-icon"><div class="tile">📊</div><span>Grafana</span></div>
+            <div class="preview-icon"><div class="tile">🐙</div><span>GitHub</span></div>
+            <div class="preview-icon"><div class="tile">🎨</div><span>Figma</span></div>
+            <div class="preview-icon"><div class="tile">🗺️</div><span>Maps</span></div>
+            <div class="preview-icon"><div class="tile">⚙️</div><span>Settings</span></div>
+          </div>
+          <div class="preview-window">
+            <div class="bar"><i></i><i></i><span class="t"></span><i></i></div>
+            <div class="body"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="preview-taskbar"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="preview-clock">14:32<br>Wed 30 Sep</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── features -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A real desktop experience — inside the browser</h2>
+        <p>DexterOS behaves like an operating system for your SaaS stack, with an app launcher, windows,
+           wallpapers and full admin control over what everyone can see.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature">
+          <div class="ico">🪟</div>
+          <h3>Multi-window workspace</h3>
+          <p>Open several tools at once in movable, resizable windows. Minimise, maximise, restore and close —
+             the desktop stays right underneath, just like a PC.</p>
+        </article>
+        <article class="feature">
+          <div class="ico">🚀</div>
+          <h3>Database-driven launcher</h3>
+          <p>Every shortcut is a database row. Add an app in the admin console and it appears for your whole team
+             instantly — no deployments, no front-end changes.</p>
+        </article>
+        <article class="feature">
+          <div class="ico">🖼️</div>
+          <h3>Admin-curated wallpapers</h3>
+          <p>Upload, edit, disable or delete wallpapers. Members pick from the active set and their choice is stored
+             on their account and restored at every sign-in.</p>
+        </article>
+        <article class="feature">
+          <div class="ico">👥</div>
+          <h3>Tenant &amp; user management</h3>
+          <p>Search, filter and manage members: change roles, suspend or reactivate accounts, reset passwords,
+             review sessions and activity, all scoped to your workspace.</p>
+        </article>
+        <article class="feature">
+          <div class="ico">🛡️</div>
+          <h3>Secure by default</h3>
+          <p>PBKDF2-SHA256 passwords, opaque server-side session tokens, role-guarded APIs, rate limiting,
+             strict CORS/CSP headers and validated input on every endpoint.</p>
+        </article>
+        <article class="feature">
+          <div class="ico">🧠</div>
+          <h3>Graceful embed handling</h3>
+          <p>Some sites forbid framing. DexterOS detects it, explains why and keeps the app reachable in a secure
+             wrapper so nothing ever breaks.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── how it works -->
+  <section class="section" id="how" style="background:var(--bg-subtle);border-block:1px solid var(--stroke)">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Live in three steps</h2>
+        <p>From zero to a managed team desktop in a couple of minutes.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Create your workspace</h3>
+          <p class="muted">Register a workspace and you become its owner. Invite teammates with your workspace
+             join code — every workspace is fully isolated from the others.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Add apps &amp; wallpapers</h3>
+          <p class="muted">Name, link, icon — that's all an app needs. Upload wallpapers, set a default and decide
+             exactly what your members can see.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Your team signs in</h3>
+          <p class="muted">Members get a personalised desktop: their own wallpaper, app grid, taskbar and Settings
+             app for profile and preferences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── admin split -->
+  <section class="section" id="admin">
+    <div class="wrap split">
+      <div>
+        <span class="badge badge-accent">Admin console</span>
+        <h2 style="margin-top:14px">Total control, none of the busywork</h2>
+        <p class="muted">
+          A separate, hardened console for workspace owners and administrators. Changes propagate to every
+          member's desktop the moment you save them.
+        </p>
+        <ul class="check-list">
+          <li><span class="tick">✓</span><span><strong>App management</strong> — add, edit, delete, enable/disable, control visibility, set icons by emoji, upload or URL, pin to the taskbar.</span></li>
+          <li><span class="tick">✓</span><span><strong>Wallpaper library</strong> — upload images or gradients, mark a workspace default, disable without deleting.</span></li>
+          <li><span class="tick">✓</span><span><strong>User administration</strong> — search and filter members, inspect profiles, usage and sessions, suspend or remove accounts.</span></li>
+          <li><span class="tick">✓</span><span><strong>Activity monitoring</strong> — an audit trail of apps, wallpapers, members and sign-ins across the workspace.</span></li>
+        </ul>
+      </div>
+      <div class="card" style="padding:22px">
+        <div class="row-between" style="margin-bottom:14px">
+          <strong>Workspace overview</strong>
+          <span class="badge badge-good">Live data</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+          <div class="card" style="padding:14px;box-shadow:none"><div class="tiny muted">Members</div><div style="font-size:26px;font-weight:700">128</div></div>
+          <div class="card" style="padding:14px;box-shadow:none"><div class="tiny muted">Active apps</div><div style="font-size:26px;font-weight:700">14</div></div>
+          <div class="card" style="padding:14px;box-shadow:none"><div class="tiny muted">Launches (30d)</div><div style="font-size:26px;font-weight:700">3,412</div></div>
+          <div class="card" style="padding:14px;box-shadow:none"><div class="tiny muted">Wallpapers</div><div style="font-size:26px;font-weight:700">6</div></div>
+        </div>
+        <div style="margin-top:16px" class="stack">
+          <div class="row"><span class="appicon" style="background:#0d1117">🐙</span><div class="grow"><div class="small"><strong>GitHub</strong></div><div class="tiny muted">github.com · Development</div></div><span class="badge badge-good">Visible</span></div>
+          <div class="row"><span class="appicon" style="background:#111827">📝</span><div class="grow"><div class="small"><strong>Notion</strong></div><div class="tiny muted">notion.so · Productivity</div></div><span class="badge badge-good">Visible</span></div>
+          <div class="row"><span class="appicon" style="background:#2a0d0d">▶️</span><div class="grow"><div class="small"><strong>YouTube</strong></div><div class="tiny muted">youtube.com · Media</div></div><span class="badge badge-warn">Hidden</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── pricing -->
+  <section class="section" id="pricing" style="background:var(--bg-subtle);border-block:1px solid var(--stroke)">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Simple, per-workspace pricing</h2>
+        <p>Start free on this deployment. Scale when your team does — every plan includes the full feature set.</p>
+      </div>
+      <div class="pricing">
+        <div class="plan">
+          <div class="badge">Starter</div>
+          <div class="price">$0<small> / forever</small></div>
+          <div class="tiny muted">Up to 10 members</div>
+          <ul>
+            <li>Database-driven app launcher</li>
+            <li>Multi-window desktop</li>
+            <li>Admin-curated wallpapers</li>
+            <li>Profile &amp; preferences</li>
+          </ul>
+          <button class="btn btn-block" data-auth="register">Create workspace</button>
+        </div>
+        <div class="plan featured">
+          <div class="badge badge-accent">Team</div>
+          <div class="price">$9<small> / member / month</small></div>
+          <div class="tiny muted">Up to 50 members per workspace</div>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Per-app usage analytics</li>
+            <li>Session &amp; activity auditing</li>
+            <li>Embed-mode controls per app</li>
+            <li>Custom wallpaper library</li>
+          </ul>
+          <button class="btn btn-primary btn-block" data-auth="register">Start with Team</button>
+        </div>
+        <div class="plan">
+          <div class="badge">Enterprise</div>
+          <div class="price">Talk<small> to us</small></div>
+          <div class="tiny muted">Unlimited members &amp; workspaces</div>
+          <ul>
+            <li>Everything in Team</li>
+            <li>SSO &amp; directory sync <span class="tiny">(roadmap)</span></li>
+            <li>Custom roles &amp; policies</li>
+            <li>Dedicated support &amp; SLA</li>
+          </ul>
+          <button class="btn btn-block" data-auth="login">Contact sales</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── cta -->
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>Give your team one desktop instead of twenty tabs</h2>
+        <p>Spin up a workspace, drop in your tools and share the join code. It takes less time than your next stand-up.</p>
+        <div class="row" style="justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-lg" data-auth="register">Get started — it's free</button>
+          <button class="btn btn-lg ghost" data-auth="login">Sign in</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────────────────────── footer -->
+  <footer class="site">
+    <div class="wrap footer-grid">
+      <div class="row">
+        <span class="brand-mark" style="width:26px;height:26px;border-radius:7px;font-size:13px">D</span>
+        <span>© <span id="year">2026</span> DexterOS — multi-tenant SaaS workspace, running on Cloudflare Pages, D1 and R2.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#admin">Admin console</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/api/system/health">Status</a>
+        <a href="#" data-auth="login">Sign in</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/landing.js"></script>
+</body>
+</html>

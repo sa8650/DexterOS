@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Setup · DexterOS</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/landing.css">
+</head>
+<body class="landing">
+<div class="landing-shell">
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark">D</span>
+        <span>DexterOS<small>Workspace OS</small></span>
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+      </nav>
+      <div class="nav-actions">
+        <span class="badge badge-accent">First-run setup</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" style="padding-block:38px 12px">
+    <div class="wrap">
+      <span class="eyebrow"><i class="dot"></i> Deployment status</span>
+      <h1 style="margin-bottom:8px">Connect, then create <span class="grad">your workspace</span></h1>
+      <p class="lead" style="max-width:760px">
+        DexterOS runs entirely on Cloudflare: <strong>Pages</strong> hosts the app, <strong>D1</strong> stores the
+        database and <strong>R2</strong> stores uploaded icons, wallpapers and avatars. Bindings are configured in
+        your Cloudflare dashboard — never in this repository.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:14px">
+    <div class="wrap" style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:start">
+
+      <!-- ── status ── -->
+      <div class="card" style="padding:22px">
+        <div class="row-between" style="margin-bottom:14px">
+          <strong>Wiring checks</strong>
+          <button class="btn btn-sm btn-subtle" id="recheck">↻ Re-check</button>
+        </div>
+        <div id="checks" class="stack"></div>
+        <p id="binding-hint" class="tiny muted hiddenish" style="margin-top:12px">
+          Dashboard refusing to add bindings with “bindings of this project are managed through
+          <code>wrangler.toml</code>”? That means a Wrangler config file is committed at the project
+          root. Delete it (keep only <code>docs/wrangler.example.toml</code>), push, and trigger a new
+          deployment — the settings become editable again.
+        </p>
+        <div id="setup-steps" style="margin-top:18px" class="hiddenish">
+          <div class="tiny muted" style="margin-bottom:8px">Add these bindings in Cloudflare → Workers &amp; Pages → your Pages project → Settings → Functions:</div>
+          <table style="width:100%;border-collapse:collapse" class="small">
+            <thead><tr><th style="text-align:left;padding:6px 4px">Type</th><th style="text-align:left;padding:6px 4px">Variable name</th><th style="text-align:left;padding:6px 4px">Value</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:6px 4px">D1 database</td><td style="padding:6px 4px"><code>DB</code></td><td style="padding:6px 4px">Your D1 database</td></tr>
+              <tr><td style="padding:6px 4px">R2 bucket</td><td style="padding:6px 4px"><code>MEDIA</code></td><td style="padding:6px 4px">Your R2 bucket</td></tr>
+            </tbody>
+          </table>
+          <p class="tiny muted" style="margin-top:8px">After saving the bindings, redeploy (or re-run the build) and press “Re-check”. No account id, database id, bucket name or token is ever hard-coded in the app.</p>
+        </div>
+        <div id="storage-note" class="tiny muted" style="margin-top:14px"></div>
+      </div>
+
+      <!-- ── setup form ── -->
+      <div class="card" style="padding:22px">
+        <div id="form-block">
+          <p class="form-error hiddenish" id="setup-last-error" style="margin:0 0 14px"></p>
+          <strong>Create the first workspace</strong>
+          <p class="tiny muted" style="margin:6px 0 16px">This account becomes the workspace owner and administrator. It is the only thing setup does — afterwards, sign-in and member management happen on the normal pages.</p>
+          <form id="setup-form">
+            <div class="field">
+              <label for="s-workspace">Workspace name</label>
+              <input class="input" id="s-workspace" placeholder="Acme Corp" required>
+            </div>
+            <div class="field">
+              <label for="s-name">Your full name</label>
+              <input class="input" id="s-name" autocomplete="name" required placeholder="Ada Lovelace">
+            </div>
+            <div class="field">
+              <label for="s-email">Work email</label>
+              <input class="input" id="s-email" type="email" autocomplete="email" required placeholder="you@company.com">
+            </div>
+            <div class="field">
+              <label for="s-password">Password</label>
+              <input class="input" id="s-password" type="password" autocomplete="new-password" required placeholder="At least 10 characters">
+              <span class="hint">Minimum 10 characters with at least one letter and one number.</span>
+            </div>
+            <button class="btn btn-primary btn-block btn-lg" type="submit" id="s-submit">Create workspace &amp; sign in</button>
+            <p class="form-error hiddenish" id="s-error" style="margin-top:12px"></p>
+          </form>
+        </div>
+        <div id="done-block" class="hiddenish">
+          <span class="badge badge-good">Deployment ready</span>
+          <h3 style="margin:12px 0 6px">Setup is already complete</h3>
+          <p class="small muted">An account already exists on this deployment. Use the landing page to sign in.</p>
+          <div class="row" style="margin-top:14px">
+            <a class="btn btn-primary" href="/">Go to sign in</a>
+            <a class="btn btn-subtle" href="/app">Open the desktop</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── deployment self-test ── -->
+  <section class="section" style="padding-top:6px">
+    <div class="wrap">
+      <div class="card" id="diag-card" style="padding:22px">
+        <div class="row-between">
+          <div>
+            <strong>Deployment self-test</strong>
+            <p class="tiny muted" style="margin:6px 0 0">
+              Runs every operation the app needs — database binding, schema, database writes, password hashing and
+              the media bucket — and reports exactly what fails. DexterOS never asks for a Cloudflare API token or
+              any Cloudflare credential: your own sign-in is the only authentication in the product.
+            </p>
+          </div>
+          <button class="btn btn-sm" id="diag-run">Run self-test</button>
+        </div>
+        <div id="diag-out" class="stack" style="margin-top:16px"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site">
+    <div class="wrap footer-grid">
+      <div class="row">
+        <span class="brand-mark" style="width:26px;height:26px;border-radius:7px;font-size:13px">D</span>
+        <span>DexterOS · Cloudflare Pages + D1 + R2</span>
+      </div>
+      <div class="footer-links">
+        <a href="/api/system/health">Health</a>
+        <a href="/api/system/status">Status JSON</a>
+        <a href="/">Sign in</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/setup.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Desktop · DexterOS</title>
+<meta name="description" content="Your DexterOS cloud desktop.">
+<meta name="theme-color" content="#0b1226">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/desktop.css">
+</head>
+<body class="os" data-theme="dark" data-taskbar-align="center" data-icon-size="medium" data-show-labels="1">
+
+  <!-- boot splash -->
+  <div id="splash">
+    <div class="splash-inner">
+      <div class="splash-mark">D</div>
+      <h1>DexterOS</h1>
+      <p>Preparing your desktop…</p>
+      <div class="splash-bar"><i></i></div>
+    </div>
+  </div>
+
+  <!-- wallpaper + desktop -->
+  <div id="wallpaper"></div>
+  <div id="desktop" role="main" aria-label="Desktop shortcuts">
+    <div id="icon-grid"></div>
+  </div>
+
+  <div id="snap-preview"></div>
+  <div id="windows-layer"></div>
+
+  <!-- start menu -->
+  <div id="start-menu" role="dialog" aria-label="Start">
+    <div class="start-search">
+      <input id="start-search" type="search" placeholder="Search for apps, categories or websites…" aria-label="Search apps">
+    </div>
+    <div class="start-body">
+      <div class="start-section-title" id="start-pinned-title">
+        <span>Pinned by your administrator</span>
+      </div>
+      <div class="start-grid" id="start-grid"></div>
+
+      <div class="start-section-title">
+        <span id="start-list-title">Recently used</span>
+        <span class="tiny muted" id="start-workspace"></span>
+      </div>
+      <div class="start-list" id="start-list"></div>
+    </div>
+    <div class="start-footer">
+      <button class="start-user" id="start-user" aria-label="Account"></button>
+      <span class="spacer"></span>
+      <button class="btn btn-subtle btn-sm" id="start-home" title="Minimise everything and return to the home screen">🏠 Home</button>
+      <button class="btn btn-subtle btn-sm" id="start-settings" title="Open Settings">⚙️ Settings</button>
+      <button class="btn btn-subtle btn-sm hiddenish" id="start-admin-link" title="Open the admin console">🛠️ Admin</button>
+    </div>
+  </div>
+
+  <!-- taskbar -->
+  <div id="taskbar" role="toolbar" aria-label="Taskbar">
+    <div class="tb-left"></div>
+    <div class="tb-group tb-center">
+      <button class="tb-btn start-btn" id="start-button" title="Start (opens the app launcher)" aria-label="Start">
+        <span class="start-mark">D</span>
+      </button>
+      <span class="tb-sep"></span>
+      <div class="tb-group" id="tb-apps"></div>
+    </div>
+    <div class="tb-right">
+      <button class="tray-btn" id="show-home" title="Show the home screen — minimise all windows (Alt+Home)">🏠 <span class="desk-only tiny">Home</span></button>
+      <button class="tray-btn" id="tb-user" title="Account" aria-label="Account"><span id="tb-user-avatar"></span></button>
+      <button class="tray-btn" id="tb-clock" title="Date and time" aria-label="Clock"></button>
+      <button id="show-desktop" title="Show desktop" aria-label="Show desktop"></button>
+    </div>
+  </div>
+
+<script src="/assets/js/api.js"></script>
+<script src="/assets/js/desktop.js"></script>
+</body>
+</html>
